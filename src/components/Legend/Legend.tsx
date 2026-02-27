@@ -1,16 +1,16 @@
 export function Legend() {
   const items = [
-    { color: 'bg-white border border-slate-300', label: 'Empty' },
-    { color: 'bg-[#1f2937]', label: 'Wall' },
-    { color: 'bg-[#10b981]', label: 'Start' },
-    { color: 'bg-[#ef4444]', label: 'End' },
-    { color: 'bg-[#93c5fd]', label: 'Visited' },
-    { color: 'bg-[#f59e0b]', label: 'Shortest Path' },
-    { color: 'bg-[#c4b5fd]', label: 'Weight' },
+    { color: 'bg-[#0a0a1a] border border-cyan-900/50', label: '비어있음' },
+    { color: 'bg-[#372d5a]', label: '벽' },
+    { color: 'bg-[#00e676]', label: '시작' },
+    { color: 'bg-[#e040fb]', label: '도착' },
+    { color: 'bg-[#00e5ff]', label: '방문함' },
+    { color: 'bg-[#ffd600]', label: '최단경로' },
+    { color: 'bg-[#5028dc]', label: '가중치' },
   ] as const;
 
   return (
-    <div className="flex items-center justify-center gap-4 px-6 py-2 bg-[#0f172a] border-b border-slate-800 flex-wrap">
+    <div className="flex items-center justify-center gap-4 px-6 py-4 bg-[#080818] border-b border-cyan-900/30 flex-wrap">
       {items.map(({ color, label }) => (
         <div key={label} className="flex items-center gap-1.5">
           <div className={`w-4 h-4 rounded-sm ${color}`} />
@@ -18,9 +18,9 @@ export function Legend() {
         </div>
       ))}
       <div className="ml-4 text-slate-600 text-xs">
-        <span className="text-slate-500">Click/Drag</span> → Wall &nbsp;
-        <span className="text-slate-500">Shift+Drag</span> → Erase &nbsp;
-        <span className="text-slate-500">Drag S/E</span> → Move
+        <span className="text-slate-500">클릭/드래그</span> → 벽 &nbsp;
+        <span className="text-slate-500">Shift+드래그</span> → 지우기 &nbsp;
+        <span className="text-slate-500">S/E 드래그</span> → 이동
       </div>
     </div>
   );
