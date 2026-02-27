@@ -1,0 +1,74 @@
+@import "tailwindcss";
+
+@theme {
+  /* Pathfinding 시각화 전용 색상 */
+  --color-cell-empty: #ffffff;
+  --color-cell-wall: #1f2937;
+  --color-cell-start: #10b981;
+  --color-cell-end: #ef4444;
+  --color-cell-visited: #93c5fd;
+  --color-cell-visited-dark: #3b82f6;
+  --color-cell-path: #f59e0b;
+  --color-cell-path-dark: #d97706;
+  --color-cell-weight: #a78bfa;
+
+  /* UI 색상 */
+  --color-bg-primary: #0f172a;
+  --color-bg-secondary: #1e293b;
+  --color-bg-card: #334155;
+  --color-border: #475569;
+  --color-text-primary: #f8fafc;
+  --color-text-secondary: #94a3b8;
+  --color-accent: #6366f1;
+  --color-accent-hover: #4f46e5;
+}
+
+/* 셀 애니메이션 */
+@keyframes cell-visited {
+  0% {
+    transform: scale(0.3);
+    background-color: var(--color-accent);
+    border-radius: 50%;
+  }
+  50% {
+    transform: scale(1.2);
+    background-color: var(--color-cell-visited-dark);
+  }
+  100% {
+    transform: scale(1);
+    background-color: var(--color-cell-visited);
+    border-radius: 2px;
+  }
+}
+
+@keyframes cell-path {
+  0% {
+    transform: scale(0.6);
+    background-color: var(--color-cell-path-dark);
+  }
+  100% {
+    transform: scale(1);
+    background-color: var(--color-cell-path);
+  }
+}
+
+@keyframes cell-wall {
+  0% {
+    transform: scale(0.6);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.animate-cell-visited {
+  animation: cell-visited 0.4s ease-out forwards;
+}
+
+.animate-cell-path {
+  animation: cell-path 0.3s ease-out forwards;
+}
+
+.animate-cell-wall {
+  animation: cell-wall 0.15s ease-out forwards;
+}
