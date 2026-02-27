@@ -1,26 +1,26 @@
 @import "tailwindcss";
 
 @theme {
-  /* Pathfinding 시각화 전용 색상 */
-  --color-cell-empty: #ffffff;
-  --color-cell-wall: #1f2937;
-  --color-cell-start: #10b981;
-  --color-cell-end: #ef4444;
-  --color-cell-visited: #93c5fd;
-  --color-cell-visited-dark: #3b82f6;
-  --color-cell-path: #f59e0b;
-  --color-cell-path-dark: #d97706;
-  --color-cell-weight: #a78bfa;
+  /* Pathfinding 시각화 전용 색상 — Cyber/Synthwave 편 */
+  --color-cell-empty: #0a0a1a;
+  --color-cell-wall: #0d0d1e;
+  --color-cell-start: #00e676;
+  --color-cell-end: #e040fb;
+  --color-cell-visited: #00e5ff;
+  --color-cell-visited-dark: #0288d1;
+  --color-cell-path: #ffd600;
+  --color-cell-path-dark: #ff6d00;
+  --color-cell-weight: #5028dc;
 
   /* UI 색상 */
-  --color-bg-primary: #0f172a;
-  --color-bg-secondary: #1e293b;
-  --color-bg-card: #334155;
-  --color-border: #475569;
-  --color-text-primary: #f8fafc;
-  --color-text-secondary: #94a3b8;
-  --color-accent: #6366f1;
-  --color-accent-hover: #4f46e5;
+  --color-bg-primary: #080818;
+  --color-bg-secondary: #0d0d2a;
+  --color-bg-card: #141432;
+  --color-border: #00e5ff33;
+  --color-text-primary: #e0f7ff;
+  --color-text-secondary: #7ecfdf;
+  --color-accent: #00e5ff;
+  --color-accent-hover: #00b4cc;
 }
 
 /* 셀 애니메이션 */
