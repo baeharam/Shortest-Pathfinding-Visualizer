@@ -12,11 +12,10 @@ export default defineConfig({
     },
   },
   build: {
-    terserOptions: {
-      compress: {
-        drop_console: true,
-      },
-    },
+    minify: 'esbuild',
+  },
+  esbuild: {
+    drop: ['console'],
   },
   test: {
     globals: true,
