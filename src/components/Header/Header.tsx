@@ -2,6 +2,8 @@ import { useVisualizerStore } from '@/store/visualizer';
 import { useVisualization } from '@/hooks/useVisualization';
 import { ALGORITHM_LIST } from '@/types';
 import type { AlgorithmId, SpeedLevel } from '@/types';
+import { CustomSelect } from './CustomSelect';
+import type { SelectOption } from './CustomSelect';
 
 export function Header() {
   const selectedAlgorithm = useVisualizerStore((s) => s.selectedAlgorithm);
@@ -19,10 +21,10 @@ export function Header() {
   const algoInfo = ALGORITHM_LIST.find((a) => a.id === selectedAlgorithm);
 
   return (
-    <header className="bg-[#0f172a] border-b border-slate-700 px-6 py-3 flex items-center gap-4 flex-wrap">
+    <header className="bg-[#080818] border-b border-cyan-900/40 px-6 py-4 flex items-center gap-4 flex-wrap">
       {/* 타이틀 */}
       <div className="flex items-center gap-2 mr-2">
-        <span className="text-indigo-400 text-xl font-bold tracking-tight">⬡</span>
+        <span className="text-cyan-400 text-xl font-bold tracking-tight">⬡</span>
         <h1 className="text-white font-bold text-lg tracking-tight whitespace-nowrap">
           Pathfinder
         </h1>
@@ -32,38 +34,28 @@ export function Header() {
 
       {/* 알고리즘 선택 */}
       <div className="flex items-center gap-2">
-        <label className="text-slate-400 text-sm whitespace-nowrap">Algorithm</label>
-        <select
+        <label className="text-slate-400 text-sm whitespace-nowrap">알고리즘</label>
+        <CustomSelect
           value={selectedAlgorithm}
-          onChange={(e) => setAlgorithm(e.target.value as AlgorithmId)}
+          onChange={(v) => setAlgorithm(v as AlgorithmId)}
+          options={ALGORITHM_LIST.map<SelectOption>((algo) => ({ value: algo.id, label: algo.name }))}
           disabled={isActive}
-          className="bg-slate-800 text-white text-sm rounded px-3 py-1.5 border border-slate-600
-                     focus:outline-none focus:border-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed
-                     hover:border-slate-500 transition-colors"
-        >
-          {ALGORITHM_LIST.map((algo) => (
-            <option key={algo.id} value={algo.id}>
-              {algo.name}
-            </option>
-          ))}
-        </select>
+        />
       </div>
 
       {/* 속도 선택 */}
       <div className="flex items-center gap-2">
-        <label className="text-slate-400 text-sm whitespace-nowrap">Speed</label>
-        <select
+        <label className="text-slate-400 text-sm whitespace-nowrap">속도</label>
+        <CustomSelect
           value={speed}
-          onChange={(e) => setSpeed(e.target.value as SpeedLevel)}
+          onChange={(v) => setSpeed(v as SpeedLevel)}
+          options={[
+            { value: 'fast', label: '빠름' },
+            { value: 'normal', label: '보통' },
+            { value: 'slow', label: '느림' },
+          ]}
           disabled={isRunning}
-          className="bg-slate-800 text-white text-sm rounded px-3 py-1.5 border border-slate-600
-                     focus:outline-none focus:border-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed
-                     hover:border-slate-500 transition-colors"
-        >
-          <option value="fast">Fast</option>
-          <option value="normal">Normal</option>
-          <option value="slow">Slow</option>
-        </select>
+        />
       </div>
 
       <div className="h-5 w-px bg-slate-600" />
@@ -74,37 +66,37 @@ export function Header() {
           <button
             onClick={start}
             disabled={isDone}
-            className="bg-indigo-600 hover:bg-indigo-500 disabled:opacity-40 disabled:cursor-not-allowed
-                       text-white text-sm font-medium px-4 py-1.5 rounded transition-colors"
+            className="bg-cyan-600 hover:bg-cyan-400 disabled:opacity-40 disabled:cursor-not-allowed
+                       text-white text-sm font-medium px-4 py-1.5 rounded transition-colors shadow-[0_0_14px_rgba(0,229,255,0.4)]"
           >
-            ▶ Visualize
+            ▶ 시각화
           </button>
         )}
 
         {isRunning && (
           <button
             onClick={pause}
-            className="bg-amber-600 hover:bg-amber-500 text-white text-sm font-medium px-4 py-1.5 rounded transition-colors"
+            className="bg-amber-600 hover:bg-amber-500 text-white text-sm font-medium px-4 py-1.5 rounded transition-colors shadow-[0_0_12px_rgba(245,158,11,0.5)]"
           >
-            ⏸ Pause
+            ⏸ 일시정지
           </button>
         )}
 
         {isPaused && (
           <button
             onClick={resume}
-            className="bg-green-600 hover:bg-green-500 text-white text-sm font-medium px-4 py-1.5 rounded transition-colors"
+            className="bg-emerald-700 hover:bg-emerald-500 text-white text-sm font-medium px-4 py-1.5 rounded transition-colors shadow-[0_0_12px_rgba(0,230,118,0.5)]"
           >
-            ▶ Resume
+            ▶ 재개
           </button>
         )}
 
         {isActive && (
           <button
             onClick={stop}
-            className="bg-slate-600 hover:bg-slate-500 text-white text-sm font-medium px-4 py-1.5 rounded transition-colors"
+            className="bg-slate-800 hover:bg-slate-700 text-white text-sm font-medium px-4 py-1.5 rounded transition-colors border border-slate-600"
           >
-            ✕ Stop
+            ✕ 중지
           </button>
         )}
       </div>
@@ -116,18 +108,18 @@ export function Header() {
         <button
           onClick={clearPath}
           disabled={isActive}
-          className="bg-slate-700 hover:bg-slate-600 disabled:opacity-40 disabled:cursor-not-allowed
-                     text-slate-200 text-sm px-3 py-1.5 rounded transition-colors"
+          className="bg-slate-900 hover:bg-slate-800 disabled:opacity-40 disabled:cursor-not-allowed
+                     text-slate-300 text-sm px-3 py-1.5 rounded transition-colors border border-slate-700"
         >
-          Clear Path
+          경로 초기화
         </button>
         <button
           onClick={clearGrid}
           disabled={isActive}
-          className="bg-slate-700 hover:bg-slate-600 disabled:opacity-40 disabled:cursor-not-allowed
-                     text-slate-200 text-sm px-3 py-1.5 rounded transition-colors"
+          className="bg-slate-900 hover:bg-slate-800 disabled:opacity-40 disabled:cursor-not-allowed
+                     text-slate-300 text-sm px-3 py-1.5 rounded transition-colors border border-slate-700"
         >
-          Clear Grid
+          그리드 초기화
         </button>
       </div>
 
@@ -137,19 +129,13 @@ export function Header() {
           <div className="h-5 w-px bg-slate-600" />
           <div className="flex items-center gap-3 text-xs">
             {algoInfo?.guaranteed ? (
-              <span className="text-emerald-400 font-medium">✓ Shortest Path</span>
+              <span className="text-emerald-400 font-medium">✓ 최단경로 보장</span>
             ) : (
-              <span className="text-amber-400 font-medium">⚠ Not Guaranteed</span>
+              <span className="text-amber-400 font-medium">⚠ 최단경로 미보장</span>
             )}
-            <span className="text-slate-400">
-              Visited: <span className="text-white font-medium">{stats.visitedCount}</span>
-            </span>
-            <span className="text-slate-400">
-              Path: <span className="text-white font-medium">{stats.pathLength}</span> cells
-            </span>
-            <span className="text-slate-400">
-              Time: <span className="text-white font-medium">{stats.executionMs.toFixed(2)}</span>ms
-            </span>
+            <span className="text-slate-500">방문: <span className="text-cyan-400 font-medium">{stats.visitedCount}</span></span>
+            <span className="text-slate-500">경로: <span className="text-cyan-300 font-medium">{stats.pathLength}</span> 칸</span>
+            <span className="text-slate-500">시간: <span className="text-cyan-300 font-medium">{stats.executionMs.toFixed(2)}</span>ms</span>
           </div>
         </>
       )}
