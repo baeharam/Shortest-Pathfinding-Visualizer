@@ -5,7 +5,6 @@ import { bfs } from './bfs';
 import { dfs } from './dfs';
 import { bellmanFord } from './bellman-ford';
 import { bidirectionalBfs } from './bidirectional-bfs';
-import { jps } from './jps';
 import { greedyBfs } from './greedy-bfs';
 
 export type AlgorithmFn = (
@@ -21,7 +20,6 @@ const ALGORITHMS: Record<AlgorithmId, AlgorithmFn> = {
   dfs,
   'bellman-ford': bellmanFord,
   'bidirectional-bfs': bidirectionalBfs,
-  jps,
   'greedy-bfs': greedyBfs,
 };
 
@@ -35,4 +33,4 @@ export function runAlgorithm(
   return fn(grid, start, end);
 }
 
-export { dijkstra, astar, bfs, dfs, bellmanFord, bidirectionalBfs, jps, greedyBfs };
+export { dijkstra, astar, bfs, dfs, bellmanFord, bidirectionalBfs, greedyBfs };

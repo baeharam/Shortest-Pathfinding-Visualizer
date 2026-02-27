@@ -30,8 +30,8 @@ export type AlgorithmId =
   | 'dfs'
   | 'bellman-ford'
   | 'bidirectional-bfs'
-  | 'jps'
   | 'greedy-bfs';
+
 
 export interface AlgorithmInfo {
   id: AlgorithmId;
@@ -81,13 +81,6 @@ export const ALGORITHM_LIST: AlgorithmInfo[] = [
     id: 'bidirectional-bfs',
     name: 'Bidirectional BFS',
     description: '시작과 끝에서 동시에 탐색하는 양방향 BFS',
-    weighted: false,
-    guaranteed: true,
-  },
-  {
-    id: 'jps',
-    name: 'Jump Point Search',
-    description: '격자 탐색에 최적화된 A* 변형 알고리즘',
     weighted: false,
     guaranteed: true,
   },
